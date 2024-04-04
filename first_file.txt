@@ -1,0 +1,10 @@
+hello there we are a text file
+this is a good file
+
+it's got some new lines
+etc
+
+whatever else is in here.
+emacs whatever.txt
+
+
