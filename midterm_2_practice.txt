@@ -1,0 +1,130 @@
+#5)
+dict.get(key, something)
+if not in the dict then
+returns something
+dict.get(key)
+return None if nothing is
+there.
+
+bakery = { ’ falafel ’: 3 , ’ quiche ’: 6 , 'babka ’: 6, ’ danish ’: 5}
+
+13) 8
+14)
+grid[0][0] == 'X' and grid[1][1] == 'X' and grid[2][2] == 'X'
+forbidden python:
+all(grid[i][i] for i in range(n))
+15)
+'Data' in robots and 'HAL' in robots and 'Marvin' not in robots
+16)
+Theory:
+inf ram = recurse forever
+fininte ram = stack overflow
+Python:
+RecursionError after ~1000 iterations
+17)Explain what checks must be performed to ensure that accessing the 2d-list
+grid at grid[row][col] does not result in an IndexError
+
+1) check that 0 <= row < len(grid)
+2) check that 0 <= col < len(grid[row])
+18a) Clockwise: name, parameters, definition, call, body
+
+18b)
+def inner (x , y ):
+return 4 * y - x
+def outer (a , b ):
+return 2 * b + a
+a = 4
+b = 3
+c = inner (a , b)
+d = outer ( inner (a , c ) , b )
+print (a , b , c , d )
+
+inner(4, 3) = 4 * 3 - 4 = 8
+inner(4, 8) = 4 * 8 - 4 = 28
+outer(28, 3) = 2 * 3 + 28 = 34
+
+prints:
+4 3 8 34
+
+def diabolical (n , k ):
+  print (n , k )
+  if n < 1:
+    return 1
+  return 1 + diabolical ( n - k , k + 1)
+
+print ( diabolical (25 , 0))
+
+25 0 calls it on diabolical(25, 1)
+25 1 calls it on diabolical(24, 2)
+24 2 calls it on diabolical(22, 3)
+22 3 calls it on diabolical(19, 4)
+19 4 calls it on diabolical(15, 5)
+15 5 calls it on diabolical(10, 6)
+10 6 calls it on diabolical(4, 7)
+4 7 calls it on diabolical(-3, 8)
+-3 8 stops
+9
+
+print ( ’hellojelloyellow’. split ( ’ll’ ))
+['he', 'oje', 'oye', 'ow']
+
+';asdf;'.split(';')
+
+play with split and join, and just join lists with different separators
+split strings, see what happens
+
+matrix = [[5 , 4 , 3] , [7 , 8 , 9] , [2 , 1 , 0]]
+for i in range (3):
+print ( matrix [(2 * i + 1) % 3][(5 * i + 2) % 3])
+
+i = 0 ==> matrix[2 * 0 + 1][5 * 0 + 2] = matrix[1][2] = 9
+i = 1 ==> matrix[(2 * 1 + 1) % 3][(5 * 1 + 2)% 3] = matrix[0][1] = 4
+i = 2 ==> matrix[(2 * 2 + 1) % 3][(5 * 2 + 2)% 3] = matrix[2][0] = 2
+Answer:
+9
+4
+2
+
+22. Convert the binary number 0011 0111 to decimal.
+1 + 2 + 4 + 16 + 32 = 55
+23. Convert the binary number 1010 0011 to decimal.
+1 + 2 + 32 + 128 = 163
+24. Convert the decimal number 53 to binary.
+53 ==> 26 ==> 13 ==> 6 ==> 3 ==> 1
+0011 0101
+1 + 4 + 16 + 32 = 53
+25. Convert the decimal number 220 to binary.
+220 ==> 110 ==> 55 ==> 27 ==> 13 ==> 6==> 3 ==> 1
+1101 1100
+
+
+Write a recursive function sum ascending that calculates the sum of a list but only those
+elements which are ascending, for instance the list:
+L = [1, 2, 1, 4, 2, 3, 5, 8, 7]
+should produce 1 + 2 + 4 + 5 + 8 = 20. Do not use any loops. You are permitted to use
+list slices, recall that L[1 :] will make a copy of everything except for the first element. I leave
+the parameters up to you, there are multiple ways to solve the problem.
+def sum_ascending (the_list, current = 0):
+  if not the_list:
+    return 0
+  elif the_list[0] > current:
+    return the_list[0] + sum_ascending(the_list[1:], the_list[0])
+  else:
+    return sum_ascending(the_list[1:], current)
+
+Write a function called max of lists where you take a 2d list and generate a list of the max-
+imums of each list. Assume the lists will have only positive integers, so if the list is empty,
+then zero is the maximum.
+For example if you have the list L = [[1, 2, 3, 4], [10, 50, 100, 1000, 2], [], [3]] then the list that
+should be returned is [4, 1000, 0, 3].
+def max_of_lists ( L ):
+  list_of_maxes = []
+  for i in range(len(L)):
+    if L[i]:
+      cm = L[0]
+      for j in range(len(L[i])):
+        if cm < L[i][j]:
+          cm = L[i][j]
+          list_of_maxes.append(cm)
+        else:
+          list_of_maxes.append(0)
