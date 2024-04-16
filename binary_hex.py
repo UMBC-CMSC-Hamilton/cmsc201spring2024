@@ -161,3 +161,93 @@ What the heck is hex?
     
     dec -> hex
 """
+
+"""
+Talk about hex again.
+    bin     dec hex     bin     dec hex
+    0000    0   0       1000    8   8
+    0001    1   1       1001    9   9
+    0010    2   2       1010    10  a/A
+    0011    3   3       1011    11  b/B
+    0100    4   4       1100    12  c/C
+    0101    5   5       1101    13  d/D
+    0110    6   6       1110    14  e/E
+    0111    7   7       1111    15  f/F
+
+Reminder in python if you want to enter a number in hex:
+
+    0x[the number]
+    ac12 = hex number and a legal variable name
+    0xac12
+    [not allowed to start a variable with a number]
+    
+    0x[hex]
+    0b[0's and 1's]
+    
+    _1_object
+    one_object
+
+How do we convert from hex to decimal?
+
+    Hard way (no easy way):
+        0x3d4af
+        15 + 10 * 16 + 4 * 16^2 + 13 * 16^3 + 3 * 16^4
+        15 + 160 + 1024 + 13 * 4096 + 3 * 65536
+        = 251,055
+    0x9c (another way)
+        1001 1100
+        4 + 8 + 16 + 128 = 10 + 16 + 130 = 156
+        9 * 16 + 12 = 144 + 12 = 156 yes
+
+    decimal to hex:
+        algorithm to convert from decimal into hex
+        until number == 0
+            mod by 16 ==> convert into a digit
+            divide by 16
+        
+        You can always convert to binary and then use the table
+        
+        783 into hex
+        783 into binary
+        
+        194 = 200 - 6
+        96 = 100 - 4
+        
+        00783 (odd) => 391 (odd) => 195 (odd) => 97 => 48 (even)
+            24 => 12 => 6 => 3 (odd) => 1 (odd)
+        0011 0000 1111
+        0x30f (yep it's 30f)
+        
+        783 % 16 on paper
+            = 15 ==> f
+        783 / 16 = 48
+            48 % 16 = 0
+            48 / 16 = 3
+        last digit is 3
+        0x30f
+"""
+
+def number_into_hex(the_num):
+    hexits = {
+        0: '0', 1: '1', 2: '2', 3: '3',
+        4: '4', 5: '5', 6: '6', 7: '7',
+        8: '8', 9: '9', 10: 'a', 11: 'b',
+        12: 'c', 13: 'd', 14: 'e', 15: 'f'
+    }
+    result = ''
+    if the_num == 0:
+        result = '0'
+    
+    while the_num != 0:
+        current_digit = the_num % 16
+        result = hexits[current_digit] + result
+        # why don't we use += instead?
+        the_num //= 16
+    return '0x' + result
+
+
+num = int(input('What number to convert? '))
+while num != -1:
+    print(number_into_hex(num), hex(num))
+    num = int(input('What number to convert? '))
+
